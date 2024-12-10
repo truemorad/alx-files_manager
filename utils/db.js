@@ -13,14 +13,14 @@ class DBClient {
     const host = process.env.DB_HOST || 'localhost';
     const port = process.env.DB_PORT || 27017;
     const database = process.env.DB_DATABASE || 'files_manager';
-    const dbURL = `mongodb://${host}:${port}/${database}`;
+    const URL = `mongodb://${host}:${port}/${database}`;
 
-    this.client = new mongodb.MongoClient(dbURL, { useUnifiedTopology: true, useNewUrlParser: true });
+    this.client = new mongodb.MongoClient(URL, { useUnifiedTopology: true, useNewUrlParser: true });
     this.client.connect().then(() => {
       this.db = this.client.db(`${database}`);
-      }).catch((err) => {
-        console.log(err);
-      });
+    }).catch((err) => {
+      console.log(err);
+    });
   }
 
   /**
